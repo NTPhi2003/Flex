@@ -2,7 +2,7 @@
 
     .log-in {
         flex:1;
-        margin-bottom: none;
+        margin-bottom: 0px;
         margin-top: 50px;
     }
     .picture-left {
