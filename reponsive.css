@@ -1,0 +1,9 @@
+@media (max-width: 740px) {
+
+    .log-in {
+        flex:1;
+    }
+    .picture-left {
+        flex:0;
+    }
+}
