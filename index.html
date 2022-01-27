@@ -6,32 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flex-test</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./fonts/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="reponsive.css">
+    <script src="main.js"></script>
 
 
 </head>
 <body>
     <div class="content">
         
-        <div class="picture-left">
-            <div></div>
-            
-        </div>
+        <div class="picture-left"></div>
         <div class="log-in">
             <img src="img/login-pic-pink.png" alt="" class="welcom-img">
             <h1 class="title mt-24">WELCOME</h1>
-            <div class="log-in-info">
-                
-
-                
-                </i><input type="text" name="" placeholder="Username" id="" required class="form-control username-icon">
-
-                <input type="text" name="" placeholder="Password" id="" required class="form-control mt-24 lock-icon">                  
-                <div class="forgot-password"><a href="" class="forgot-password-click">Forgot Password?</a></div> 
-                <input type="submit" value="LOGIN" class="submit-button mt-24">
-
-      </div>
+            <form name="login" action=""  onsubmit="return CheckPassword()">
+                <fieldset>
+                    <div class="log-in-info">
+                    <input type="text" name="" placeholder="Username" id="name" required class="form-control username-icon">
+                    <div class="wrong wrong-name">Tên đăng nhập không hợp lệ !</div>
+                    <input type="text" name="" placeholder="Password" id="pass" required class="form-control mt-24 lock-icon">  
+                    <div class="wrong wrong-pass">Mật khẩu không hợp lệ !</div>
+                    <div class="note">*ít nhất 6 kí tự, trong đó mật khẩu có ít nhất 1 chữ số, chữ in hoa, thường và kí tự đặc biệt</div>
+                    <div class="forgot-password"><a href="" class="forgot-password-click">Forgot Password?</a></div> 
+                    <input type="submit" value="LOGIN" class="submit-button mt-24">
+                    </div>
+                </fieldset>
+            </form>
+            
         </div>
         
     </div>
