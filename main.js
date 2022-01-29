@@ -96,6 +96,6 @@ const keyUpHandler_pass = event => {
         }
 };
 
-const debouncedKeyUp_pass = debounce(keyUpHandler_pass, 1000); 
+const debouncedKeyUp_pass = debounce(keyUpHandler_pass, 500); 
 
 pass_log.addEventListener('keyup', debouncedKeyUp_pass);
