@@ -7,7 +7,7 @@
     <title>Flex-test</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="reponsive.css">
-    <script src="main.js"></script>
+  
 
 
 </head>
@@ -18,7 +18,7 @@
         <div class="log-in">
             <img src="img/login-pic-pink.png" alt="" class="welcom-img">
             <h1 class="title mt-24">WELCOME</h1>
-            <form name="login" action=""  onsubmit="return CheckPassword()">
+            <form name="login" action=""  onsubmit="return CheckPassword()" id="form-login">
                 <fieldset>
                     <div class="log-in-info">
                     <input type="text" name="" placeholder="Username" id="name" required class="form-control username-icon">
@@ -27,7 +27,7 @@
                     <div class="wrong wrong-pass">Mật khẩu không hợp lệ !</div>
                     <div class="note">*ít nhất 6 kí tự, trong đó mật khẩu có ít nhất 1 chữ số, chữ in hoa, thường và kí tự đặc biệt</div>
                     <div class="forgot-password"><a href="" class="forgot-password-click">Forgot Password?</a></div> 
-                    <input type="submit" value="LOGIN" class="submit-button mt-24">
+                    <input type="submit" formnovalidate  value="LOGIN" class="submit-button mt-24">
                     </div>
                 </fieldset>
             </form>
@@ -36,5 +36,7 @@
         
     </div>
     <div class="head-title">MANGA PI</div>
+<script src="main.js"></script>
+
 </body>
 </html>
