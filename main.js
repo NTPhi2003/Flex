@@ -70,7 +70,7 @@ const keyUpHandler_user = event => {
         } 
 };
 
-const debouncedKeyUp = debounce(keyUpHandler_user, 1000); 
+const debouncedKeyUp = debounce(keyUpHandler_user, 500); 
 
 user_log.addEventListener('keyup', debouncedKeyUp);
 
