@@ -2,8 +2,8 @@
 
     .log-in {
         flex:1;
-        margin-bottom: 0px;
-        margin-top: 50px;
+        margin:0px;
+       
     }
     .picture-left {
         flex:0;

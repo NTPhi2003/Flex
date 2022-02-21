@@ -1,5 +1,15 @@
+function GoPage()
+{
+    if (CheckPassword()===true){
+        // location.replace("https://www.w3schools.com");
+        var content = document.querySelector('.content');
+        content.style.display = 'none';
+        var content2= document.querySelector('.home');
+        content2.style.display = 'block'
+        
+    } else return CheckPassword();
 
-function CheckPassword() 
+    function CheckPassword() 
 { 
     var username_wrong = document.querySelector('.wrong-name');
     var password_wrong = document.querySelector('.wrong-pass');
@@ -12,10 +22,12 @@ function CheckPassword()
             password_wrong.style.display = 'inline-block';
             note.style.display = 'inline-block';
             return false;
-        }  else {
-            username_wrong.style.display = 'none';
-            password_wrong.style.display = 'none';
-        }
+        }  
+        // else {
+        //     username_wrong.style.display = 'none';
+        //     password_wrong.style.display = 'none';
+        //     note.style.display = 'none';
+        // }
         if (name.length<6){
             username_wrong.style.display = 'inline-block';
             note.style.display = 'inline-block';
@@ -28,8 +40,14 @@ function CheckPassword()
             return false;
             
         } else password_wrong.style.display = 'none';
-
+        if(name.length>=6 && password.match(passw)){
+            return true;
+        }
 }
+}
+
+
+
 function debounce(fn, delay, immediate) {
     let timeout;
 
@@ -99,3 +117,5 @@ const keyUpHandler_pass = event => {
 const debouncedKeyUp_pass = debounce(keyUpHandler_pass, 500); 
 
 pass_log.addEventListener('keyup', debouncedKeyUp_pass);
+
+// location.replace("https://www.w3schools.com");
