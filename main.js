@@ -1,12 +1,12 @@
 function GoPage()
 {
+    // e.preventDefault();
     if (CheckPassword()===true){
-        // location.replace("https://www.w3schools.com");
-        var content = document.querySelector('.content');
-        content.style.display = 'none';
-        var content2= document.querySelector('.home');
-        content2.style.display = 'block'
+       
+
+        window.history.pushState('page2', document.title, '?#Home');
         
+       
     } else return CheckPassword();
 
     function CheckPassword() 
@@ -118,4 +118,33 @@ const debouncedKeyUp_pass = debounce(keyUpHandler_pass, 500);
 
 pass_log.addEventListener('keyup', debouncedKeyUp_pass);
 
-// location.replace("https://www.w3schools.com");
+window.addEventListener('popstate', function (e) {
+    if (window.location.href.indexOf("#Home") != -1){
+        console.log('ahihi');
+        var content = document.querySelector('.content');
+        content.style.display = 'none';
+        var content2= document.querySelector('.home');
+        content2.style.display = 'block';  
+    }
+});
+window.addEventListener('popstate', function (e) {
+    if (window.location.href.indexOf("#Home") != -1){
+        console.log('ahihi');
+        var content = document.querySelector('.content');
+        content.style.display = 'none';
+        var content2= document.querySelector('.home');
+        content2.style.display = 'block';  
+    }
+});
+window.addEventListener('popstate', function (e) {
+    if (window.location.href.indexOf("Flex") != -1){
+        console.log('ahiha');
+        var content = document.querySelector('.content');
+        content.style.display = 'inline';
+        var content2= document.querySelector('.home');
+        content2.style.display = 'none';  
+    }
+});
+
+
+      
