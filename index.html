@@ -7,22 +7,22 @@
     <title>Flex-test</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="reponsive.css">
-  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 
 </head>
 <body>
-    <div id="content1" class="content">
-        <div class="head-title">MANGA PI</div>
+    <div id="content1" class="content animate__animated animate__fadeInLeft">
+        <div class="head-title ">MANGA PI</div>
         <div class="form">
             <div class="picture-left"></div>
             <div class="log-in">
                 <img src="img/login-pic-pink.png" alt="" class="welcom-img">
                 <h1 class="title mt-24">WELCOME</h1>
-                <form name="login"   onsubmit="GoPage(); " id="form-login">
+                <form name="login"  id="form-login">
                     <fieldset>
                         <div class="log-in-info">
-                        <input type="text" name="" placeholder="Username" id="name" required class="form-control username-icon">
+                        <input type="text" name="" placeholder="Username" id="name" required class="form-control username-icon" autocomplete="off">
                         <div class="wrong wrong-name">Tên đăng nhập không hợp lệ !</div>
                         <input type="password" name="" placeholder="Password" id="pass" required class="form-control mt-24 lock-icon">  
                         <div class="wrong wrong-pass">Mật khẩu không hợp lệ !</div>
@@ -35,10 +35,12 @@
                 
             </div>
         </div>
+        
     </div>
     
+    
    
-    <div id="Home" class="home">HOME</div>
+    <div id="Home" class="home animate__animated animate__fadeInLeft">HOME</div>
 <script src="main.js"></script>
 
 </body>

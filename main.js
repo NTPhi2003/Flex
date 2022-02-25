@@ -1,13 +1,46 @@
-function GoPage()
+window.addEventListener('popstate', function (e) {
+    var content = document.querySelector('.content');
+    var content2= document.querySelector('.home');
+    if (window.location.href.indexOf("#Home") != -1){
+        content.style.display = 'none';
+        content2.style.display = 'block';  
+    } else {
+        content.style.display = 'block';
+        content2.style.display = 'none';  
+    }    
+});
+
+if (window.location.href.indexOf("#Home") != -1){
+    var content = document.querySelector('.content');
+    var content2= document.querySelector('.home');
+    content.style.display = 'none';
+    content2.style.display = 'block';  
+} else {
+    var content = document.querySelector('.content');
+    var content2= document.querySelector('.home');
+    content.style.display = 'block';
+    content2.style.display = 'none';  
+}  
+const form = document.querySelector('#form-login');
+form.addEventListener('submit', GoPage);
+    
+
+function GoPage(e)
 {
-    // e.preventDefault();
+    
+    
     if (CheckPassword()===true){
-       
 
         window.history.pushState('page2', document.title, '?#Home');
         
        
-    } else return CheckPassword();
+    } else{
+        
+        e.preventDefault();
+        return false;
+    }
+        
+    
 
     function CheckPassword() 
 { 
@@ -118,33 +151,5 @@ const debouncedKeyUp_pass = debounce(keyUpHandler_pass, 500);
 
 pass_log.addEventListener('keyup', debouncedKeyUp_pass);
 
-window.addEventListener('popstate', function (e) {
-    if (window.location.href.indexOf("#Home") != -1){
-        console.log('ahihi');
-        var content = document.querySelector('.content');
-        content.style.display = 'none';
-        var content2= document.querySelector('.home');
-        content2.style.display = 'block';  
-    }
-});
-window.addEventListener('popstate', function (e) {
-    if (window.location.href.indexOf("#Home") != -1){
-        console.log('ahihi');
-        var content = document.querySelector('.content');
-        content.style.display = 'none';
-        var content2= document.querySelector('.home');
-        content2.style.display = 'block';  
-    }
-});
-window.addEventListener('popstate', function (e) {
-    if (window.location.href.indexOf("Flex") != -1){
-        console.log('ahiha');
-        var content = document.querySelector('.content');
-        content.style.display = 'inline';
-        var content2= document.querySelector('.home');
-        content2.style.display = 'none';  
-    }
-});
 
 
-      

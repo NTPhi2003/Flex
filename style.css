@@ -17,8 +17,9 @@ body {
     background-color: #f3cce9;
     background-image: url(img/sakura-background.gif);
 }
+
 .content {
-    display: relative;
+    display:block;
 }
 .form {
     background-color: #ffffff;
@@ -168,7 +169,7 @@ h1 {
 } */
 .head-title {
     /* display: inline-block; */
-    
+    z-index: 1;
     font-family: 'Dongle', sans-serif;
     font-size:75px;
     position: absolute;
@@ -224,3 +225,4 @@ fieldset  {
     background-size: cover;
     display: none;
 }
+
