@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bellota:ital,wght@1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+@import url('https://css.gg/check.css');
 * {
     box-sizing: border-box;
 }
@@ -92,6 +93,18 @@ h1 {
     background-image: url(img/username_icon_pink.png);
 
 }
+
+.email-icon {
+    background-image: url(img/emai_icon.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: left center ;   
+}
+.email-icon:focus {
+    background-image: url(img/emai_icon_pink.png);
+
+}
+
 .lock-icon {
     background-image: url(img/lock_icon_gray.png);
     background-size: 20px;
@@ -226,3 +239,93 @@ fieldset  {
     display: none;
 }
 
+.modal {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+}
+.modal-container {
+    background-color: #ffffff;
+    width: 550px;
+    max-width: calc(100% - 32px);
+    min-height: 200px;
+    padding-bottom: 20px;
+    position: relative;
+}
+.modal-header {
+    height: 100px;
+    background-color: #a96b79;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: whitesmoke;
+}
+.modal-body {
+    padding: 18px 40px 0px 40px;
+}
+
+.modal-control {
+    
+    width:100%;
+    font-size: 18px;
+    padding: 11px 32px;
+    font-family: "Bellota";
+    /* border: 0px; */
+    /* outline: none; */
+   border-color: transparent;
+}
+.modal-control:focus {
+    outline:none;
+    border-color: #cb8796;
+    border-style: solid;
+   border-top-style: none;
+   border-right-style: none;
+   border-left-style: none;
+   border-width: 3px;  
+}
+
+#register {
+    line-height: 48px;
+    font-size: 18px;
+    width: 100%;
+    color: whitesmoke;
+    background-color: #cb8796;
+    border-radius: 30px;
+    border-style: none;   
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+#register:hover {
+background-color: #a96b79;
+}
+
+.note2 {
+    padding-top: 7px;
+    font-size: 14px;
+    /* display: none; */
+    padding-bottom: 7px;
+}
+
+.modal-close {
+    font-size: 15px;
+    position:absolute;
+    top:0;
+    right: 0;
+    color: whitesmoke;
+    padding:11px 11px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+.modal-close:hover {
+    opacity: 1;
+    background-color: whitesmoke;
+    color: #a96b79;
+}

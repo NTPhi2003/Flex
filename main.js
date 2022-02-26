@@ -22,9 +22,10 @@ if (window.location.href.indexOf("#Home") != -1){
     content2.style.display = 'none';  
 }  
 const form = document.querySelector('#form-login');
-form.addEventListener('submit', GoPage);
-    
 
+
+
+form.addEventListener('submit', GoPage);    
 function GoPage(e)
 {
     
