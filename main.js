@@ -1,30 +1,185 @@
-// window.addEventListener('popstate', function (e) {
-//     var content = document.querySelector('.content');
-//     var content2= document.querySelector('.home');
-//     if (window.location.href.indexOf("#Home") != -1){
-//         content.style.display = 'none';
-//         content2.style.display = 'block';
-//     } else {
-//         content.style.display = 'block';
-//         content2.style.display = 'none';
-//     }
-// });
+window.addEventListener("popstate", function (e) {
+  var content = document.querySelector(".content");
+  var content2 = document.querySelector(".home");
+  if (window.location.href.indexOf("#Home") != -1) {
+    content.style.display = "none";
+    content2.style.display = "block";
+  } else {
+    content.style.display = "block";
+    content2.style.display = "none";
+  }
+});
 
-// if (window.location.href.indexOf("#Home") != -1){
-//     var content = document.querySelector('.content');
-//     var content2= document.querySelector('.home');
-//     content.style.display = 'none';
-//     content2.style.display = 'block';
-// } else {
-//     var content = document.querySelector('.content');
-//     var content2= document.querySelector('.home');
-//     content.style.display = 'block';
-//     content2.style.display = 'none';
-// }
+if (window.location.href.indexOf("#Home") != -1) {
+  var content = document.querySelector(".content");
+  var content2 = document.querySelector(".home");
+  content.style.display = "none";
+  content2.style.display = "block";
+} else {
+  var content = document.querySelector(".content");
+  var content2 = document.querySelector(".home");
+  content.style.display = "block";
+  content2.style.display = "none";
+}
+
+// REGISTER
+const modal_lable = document.querySelector(".modal-lable");
+const regisBtn = document.querySelector(".js-regis-butt");
+// console.log(regisBtn);
+const modal = document.querySelector(".js-modal");
+const modalContainer = document.querySelector(".js-modal-container");
+const modal_close = document.querySelector(".js-modal-close");
+function showModal() {
+  modal.classList.add("open");
+}
+function hideModal() {
+  modal.classList.remove("open");
+}
+regisBtn.addEventListener("click", showModal);
+modal_close.addEventListener("click", hideModal);
+// modal.addEventListener('click',hideModal);
+// modalContainer.addEventListener('click',function(e){
+//     e.stopPropagation();
+// })
+
+// DEBOUNCE IN REGISTER
+const user_regis = document.querySelector(".regis-name");
+const email_regis = document.querySelector(".regis-email");
+const pass_regis = document.querySelector(".regis-pass");
+const confirm_pass_regis = document.querySelector(".confirm-regis-pass");
+const regis_username_wrong = document.querySelector(".register-wrong-name");
+const regis_email_wrong = document.querySelector(".register-wrong-email");
+const regis_password_wrong = document.querySelector(".register-wrong-pass");
+const confirm_regis_password_wrong = document.querySelector(
+  ".register-wrong-pass-confirm"
+);
+const regis_confirm_btn = document.querySelector(".regis-confirm-btn");
+const passw =
+  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,30}$/;
+const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+// Debounce name
+const check_regist_name = (event) => {
+  const regis_name = document.querySelector(".regis-name").value;
+  if (regis_name.length < 6 && regis_name.length != 0) {
+    regis_username_wrong.style.display = "inline-block";
+  } else {
+    regis_username_wrong.style.display = "none";
+  }
+};
+const regis_debouncedKeyUp_user = debounce(check_regist_name, 500);
+
+user_regis.addEventListener("keyup", regis_debouncedKeyUp_user);
+
+// Debounce pass
+const check_regist_pass = (event) => {
+  const regis_password = document.querySelector(".regis-pass").value;
+
+  if (!regis_password.match(passw) && regis_password.length != 0) {
+    regis_password_wrong.style.display = "inline-block";
+  } else {
+    regis_password_wrong.style.display = "none";
+  }
+};
+const regis_debouncedKeyUp_pass = debounce(check_regist_pass, 500);
+pass_regis.addEventListener("keyup", regis_debouncedKeyUp_pass);
+
+// Debounce confirm pass
+
+const check_confirmRegist_pass = (event) => {
+  const regis_password = document.querySelector(".regis-pass").value;
+  const confirm_regis_password = document.querySelector(
+    ".confirm-regis-pass"
+  ).value;
+
+  if (
+    confirm_regis_password != regis_password &&
+    confirm_regis_password.length != 0
+  ) {
+    confirm_regis_password_wrong.style.display = "inline-block";
+  } else {
+    confirm_regis_password_wrong.style.display = "none";
+  }
+};
+const regis_debouncedKeyUp_confirmPass = debounce(
+  check_confirmRegist_pass,
+  500
+);
+confirm_pass_regis.addEventListener("keyup", regis_debouncedKeyUp_confirmPass);
+
+// Debounce email
+
+const check_email = (event) => {
+  const regis_email = document.querySelector(".regis-email").value;
+
+  if (!regis_email.match(mailformat) && regis_email.length != 0) {
+    regis_email_wrong.style.display = "inline-block";
+  } else {
+    regis_email_wrong.style.display = "none";
+  }
+};
+const regis_debouncedKeyUp_email = debounce(check_email, 500);
+email_regis.addEventListener("keyup", regis_debouncedKeyUp_email);
+
+regis_confirm_btn.addEventListener("click", checkRegis);
+function checkRegis() {
+  let regis_name = document.querySelector(".regis-name").value;
+  let regis_password = document.querySelector(".regis-pass").value;
+  let confirm_regis_password = document.querySelector(
+    ".confirm-regis-pass"
+  ).value;
+  const regis_email = document.querySelector(".regis-email").value;
+
+  if (regis_name.length < 6) {
+    regis_username_wrong.style.display = "inline-block";
+  } else {
+    regis_username_wrong.style.display = "none";
+  }
+  if (!regis_password.match(passw)) {
+    regis_password_wrong.style.display = "inline-block";
+  } else {
+    regis_password_wrong.style.display = "none";
+  }
+  if (confirm_regis_password != regis_password) {
+    confirm_regis_password_wrong.style.display = "inline-block";
+  } else {
+    confirm_regis_password_wrong.style.display = "none";
+  }
+  if (!regis_email.match(mailformat)) {
+    regis_email_wrong.style.display = "inline-block";
+  } else {
+    regis_email_wrong.style.display = "none";
+  }
+
+  if (
+    regis_name.length >= 6 &&
+    regis_password.match(passw) &&
+    confirm_regis_password === regis_password &&
+    regis_email.match(mailformat)
+  ) {
+    // const id = `${regis_name}`;
+    console.log("thanh cong");
+    const temp = {
+      Name: regis_name,
+      Pass: regis_password,
+      Email: regis_email,
+    };
+    regis_name = "";
+    console.log(regis_name);
+    console.log(regis_password);
+    localStorage.setItem(`${regis_name}`, JSON.stringify(temp));
+  } else console.log("fail");
+}
+
+const user = JSON.parse(localStorage.getItem("daorong096"));
+console.log(user);
+
+// LOGIN
+
 const form = document.querySelector("#form-login");
-
 var Username = document.querySelector("#name");
 var Userpassword = document.querySelector("#pass");
+const login_btn = document.querySelector(".submit-button");
 function CheckPassword() {
   var username_wrong = document.querySelector(".wrong-name");
   var password_wrong = document.querySelector(".wrong-pass");
@@ -55,14 +210,18 @@ function CheckPassword() {
   }
 }
 
-
-form.addEventListener("submit", GoPage);
+login_btn.addEventListener("click", GoPage);
 function GoPage(e) {
+  e.preventDefault();
   if (CheckPassword() === true) {
-    window.history.pushState("page2", document.title, "?#Home");
-    localStorage.user = Username.value;
+    const user = JSON.parse(localStorage.getItem(Username.value));
+    if (user == null) {
+      alert("Tài khoản không tồn tại !");
+    } else {
+      if (user.Pass === Userpassword.value) console.log("Đăng nhập thành công");
+      else alert("Mật khẩu sai");
+    }
   } else {
-    e.preventDefault();
     return false;
   }
 }
@@ -131,154 +290,3 @@ const keyUpHandler_pass = (event) => {
 const debouncedKeyUp_pass = debounce(keyUpHandler_pass, 500);
 
 pass_log.addEventListener("keyup", debouncedKeyUp_pass);
-
-
-
-
-
-
-
-// REGISTER
-const modal_lable = document.querySelector(".modal-lable")
-const regisBtn = document.querySelector(".js-regis-butt");
-// console.log(regisBtn);
-const modal = document.querySelector(".js-modal");
-const modalContainer = document.querySelector(".js-modal-container");
-const modal_close = document.querySelector(".js-modal-close");
-function showModal() {
-  modal.classList.add("open");
-}
-function hideModal() {
-  modal.classList.remove("open");
-}
-regisBtn.addEventListener("click", showModal);
-modal_close.addEventListener("click", hideModal);
-// modal.addEventListener('click',hideModal);
-// modalContainer.addEventListener('click',function(e){
-//     e.stopPropagation();
-// })
-
-// DEBOUNCE IN REGISTER
-const user_regis = document.querySelector(".regis-name");
-const email_regis = document.querySelector(".regis-email");
-const pass_regis = document.querySelector(".regis-pass");
-const confirm_pass_regis = document.querySelector(".confirm-regis-pass");
-const regis_username_wrong = document.querySelector(".register-wrong-name");
-const regis_email_wrong = document.querySelector(".register-wrong-email");
-const regis_password_wrong = document.querySelector(".register-wrong-pass");
-const confirm_regis_password_wrong = document.querySelector(
-  ".register-wrong-pass-confirm"
-);
-const regis_confirm_btn = document.querySelector('.regis-confirm-btn');
-const passw =
-  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,30}$/;
-const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-// Debounce name
-const check_regist_name = (event) => {
-  const regis_name = document.querySelector(".regis-name").value;
-  if (regis_name.length < 6 && regis_name.length != 0) {
-    regis_username_wrong.style.display = "inline-block";
-  } else {
-    regis_username_wrong.style.display = "none";
-  }
-};
-const regis_debouncedKeyUp_user = debounce(check_regist_name, 500);
-
-user_regis.addEventListener("keyup", regis_debouncedKeyUp_user);
-
-// Debounce pass
-const check_regist_pass = (event) => {
-  const regis_password = document.querySelector(".regis-pass").value;
-
-  if (!regis_password.match(passw) && regis_password.length != 0) {
-    regis_password_wrong.style.display = "inline-block";
-  } else {
-    regis_password_wrong.style.display = "none";
-  }
-};
-const regis_debouncedKeyUp_pass = debounce(check_regist_pass, 500);
-pass_regis.addEventListener("keyup", regis_debouncedKeyUp_pass);
-
-// Debounce confirm pass
-
-const check_confirmRegist_pass = (event) => {
-  const regis_password = document.querySelector(".regis-pass").value;
-  const confirm_regis_password = document.querySelector(
-    ".confirm-regis-pass"
-  ).value;
-
-  if (
-    confirm_regis_password != regis_password &&
-    confirm_regis_password.length != 0
-  ) {
-    confirm_regis_password_wrong.style.display = "inline-block";
-  } else {
-    confirm_regis_password_wrong.style.display = "none";
-  }
-};
-const regis_debouncedKeyUp_confirmPass = debounce(
-  check_confirmRegist_pass,
-  500
-);
-confirm_pass_regis.addEventListener("keyup", regis_debouncedKeyUp_confirmPass);
-
-// Debounce email
-
-const check_email = (event) => {
-  const regis_email = document.querySelector(".regis-email").value;
-
-  if (!regis_email.match(mailformat) && regis_email.length != 0) {
-    regis_email_wrong.style.display = "inline-block";
-  } else {
-    regis_email_wrong.style.display = "none";
-  }
-};
-const regis_debouncedKeyUp_email = debounce(check_email, 500);
-email_regis.addEventListener("keyup", regis_debouncedKeyUp_email);
-
-regis_confirm_btn.addEventListener("click", checkRegis)
-function checkRegis() { 
-  let regis_name = document.querySelector(".regis-name").value;
-  let regis_password = document.querySelector(".regis-pass").value;
-  let confirm_regis_password = document.querySelector(
-    ".confirm-regis-pass"
-  ).value;
-  const regis_email = document.querySelector(".regis-email").value
-
-  if (regis_name.length < 6) {
-    regis_username_wrong.style.display = "inline-block";
-  } else {
-    regis_username_wrong.style.display = "none";
-  }
-  if (!regis_password.match(passw)) {
-    regis_password_wrong.style.display = "inline-block";
-  } else {
-    regis_password_wrong.style.display = "none";
-  }
-  if (confirm_regis_password != regis_password) {
-    confirm_regis_password_wrong.style.display = "inline-block";
-  } else {
-    confirm_regis_password_wrong.style.display = "none";
-  }
-  if (!regis_email.match(mailformat)) {
-    regis_email_wrong.style.display = "inline-block";
-  } else {
-    regis_email_wrong.style.display = "none";
-  }
-
-  if (regis_name.length >=6 && regis_password.match(passw) && confirm_regis_password === regis_password && regis_email.match(mailformat)) {
-    // const id = `${regis_name}`;
-    console.log('thanh cong')
-    const temp = {
-      Name: regis_name,
-      Pass: regis_password,
-      Email: regis_email
-    }
-    // resetValue.reset();
-    localStorage.setItem(`${regis_name}`, JSON.stringify(temp))
-    
-  } else console.log('fail')
-}
-
-
