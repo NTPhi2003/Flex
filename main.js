@@ -39,11 +39,7 @@ function CheckPassword() {
     note.style.display = "inline-block";
     return false;
   }
-  // else {
-  //     username_wrong.style.display = 'none';
-  //     password_wrong.style.display = 'none';
-  //     note.style.display = 'none';
-  // }
+
   if (name.length < 6) {
     username_wrong.style.display = "inline-block";
     note.style.display = "inline-block";
@@ -58,6 +54,7 @@ function CheckPassword() {
     return true;
   }
 }
+
 
 form.addEventListener("submit", GoPage);
 function GoPage(e) {
@@ -135,7 +132,14 @@ const debouncedKeyUp_pass = debounce(keyUpHandler_pass, 500);
 
 pass_log.addEventListener("keyup", debouncedKeyUp_pass);
 
+
+
+
+
+
+
 // REGISTER
+const modal_lable = document.querySelector(".modal-lable")
 const regisBtn = document.querySelector(".js-regis-butt");
 // console.log(regisBtn);
 const modal = document.querySelector(".js-modal");
@@ -165,6 +169,7 @@ const regis_password_wrong = document.querySelector(".register-wrong-pass");
 const confirm_regis_password_wrong = document.querySelector(
   ".register-wrong-pass-confirm"
 );
+const regis_confirm_btn = document.querySelector('.regis-confirm-btn');
 const passw =
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,30}$/;
 const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -231,3 +236,49 @@ const check_email = (event) => {
 };
 const regis_debouncedKeyUp_email = debounce(check_email, 500);
 email_regis.addEventListener("keyup", regis_debouncedKeyUp_email);
+
+regis_confirm_btn.addEventListener("click", checkRegis)
+function checkRegis() { 
+  let regis_name = document.querySelector(".regis-name").value;
+  let regis_password = document.querySelector(".regis-pass").value;
+  let confirm_regis_password = document.querySelector(
+    ".confirm-regis-pass"
+  ).value;
+  const regis_email = document.querySelector(".regis-email").value
+
+  if (regis_name.length < 6) {
+    regis_username_wrong.style.display = "inline-block";
+  } else {
+    regis_username_wrong.style.display = "none";
+  }
+  if (!regis_password.match(passw)) {
+    regis_password_wrong.style.display = "inline-block";
+  } else {
+    regis_password_wrong.style.display = "none";
+  }
+  if (confirm_regis_password != regis_password) {
+    confirm_regis_password_wrong.style.display = "inline-block";
+  } else {
+    confirm_regis_password_wrong.style.display = "none";
+  }
+  if (!regis_email.match(mailformat)) {
+    regis_email_wrong.style.display = "inline-block";
+  } else {
+    regis_email_wrong.style.display = "none";
+  }
+
+  if (regis_name.length >=6 && regis_password.match(passw) && confirm_regis_password === regis_password && regis_email.match(mailformat)) {
+    // const id = `${regis_name}`;
+    console.log('thanh cong')
+    const temp = {
+      Name: regis_name,
+      Pass: regis_password,
+      Email: regis_email
+    }
+    // resetValue.reset();
+    localStorage.setItem(`${regis_name}`, JSON.stringify(temp))
+    
+  } else console.log('fail')
+}
+
+
