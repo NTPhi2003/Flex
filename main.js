@@ -4,32 +4,39 @@ const remember = localStorage.getItem('rememberUser');
 const logOutBtn = document.querySelector(".logout-button")
 
 function renderLogin() {
-  window.history.pushState('page1', document.title, '/');
+  
   content.style.display = "block";
   content2.style.display = "none";
   logOutBtn.style.display = "none";
+  window.history.pushState('page1', document.title, '?#Flex');
 }
 function renderHome() {
-  window.history.pushState('page2', document.title, '?#Home');
+  
   content.style.display = "none";
   content2.style.display = "block";
   logOutBtn.style.display = "block";
+  window.history.pushState('page2', document.title, '?#Home');
 }
 
 function checkRemember() {
+  
   if (remember == null) {
     renderLogin()
-  } else renderHome()
+  } else {
+    renderHome()
+  }
 }
 checkRemember();
 window.addEventListener("popstate", function (e) {
   console.log('check')
+  checkRemember();
+  // if (window.location.href.indexOf("#Home") != -1 ) 
+  // {
+  //   renderHome();
+  // } else {
+  //   renderLogin();
+  // }
   
-  if (window.location.href.indexOf("#Home") != -1 ) {
-    renderHome();
-  } else {
-    renderLogin();
-  }
   
 });
 
@@ -319,7 +326,7 @@ pass_log.addEventListener("keyup", debouncedKeyUp_pass);
 // LogOut
 function logOut() {
   localStorage.removeItem('rememberUser');
-  window.history.pushState('page1', document.title, '/');
+  window.history.pushState('page1', document.title, '?#Flex');
   renderLogin();
 }
 logOutBtn.addEventListener('click', logOut);
