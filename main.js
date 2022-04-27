@@ -164,9 +164,6 @@ function checkRegis() {
       Pass: regis_password,
       Email: regis_email,
     };
-    regis_name = "";
-    console.log(regis_name);
-    console.log(regis_password);
     localStorage.setItem(`${regis_name}`, JSON.stringify(temp));
   } else console.log("fail");
 }
@@ -212,16 +209,24 @@ function CheckPassword() {
 
 login_btn.addEventListener("click", GoPage);
 function GoPage(e) {
-  e.preventDefault();
+  
   if (CheckPassword() === true) {
     const user = JSON.parse(localStorage.getItem(Username.value));
     if (user == null) {
+      e.preventDefault();
       alert("Tài khoản không tồn tại !");
     } else {
-      if (user.Pass === Userpassword.value) console.log("Đăng nhập thành công");
-      else alert("Mật khẩu sai");
+      if (user.Pass === Userpassword.value) {
+        console.log("Đăng nhập thành công");
+        window.history.pushState('page2', document.title, '?#Home');
+      }
+      else {
+        alert("Mật khẩu sai");
+        e.preventDefault();
+      }
     }
   } else {
+    e.preventDefault();
     return false;
   }
 }
