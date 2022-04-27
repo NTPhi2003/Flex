@@ -23,19 +23,20 @@ function checkRemember() {
   if (remember == null) {
     renderLogin()
   } else {
+
     renderHome()
   }
 }
 checkRemember();
 window.addEventListener("popstate", function (e) {
   console.log('check')
-  checkRemember();
-  // if (window.location.href.indexOf("#Home") != -1 ) 
-  // {
-  //   renderHome();
-  // } else {
-  //   renderLogin();
-  // }
+  // checkRemember();
+  if (window.location.href.indexOf("#Home") != -1 ) 
+  {
+    renderHome();
+  } else {
+    renderLogin();
+  }
   
   
 });
