@@ -152,7 +152,31 @@ h1 {
     background-color: #cb8796;
     cursor: pointer;
 }
+
+
 .submit-button:hover {
+    background-color: #a96b79;
+}
+
+.logout-button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -500px;
+    width: 20%;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-family: "Arial";
+    line-height: 1.8;
+    padding: 11px 40px;
+    border-radius: 30px;
+    border-style: none;   
+    color: whitesmoke;
+    background-color: #cb8796;
+    cursor: pointer;
+}
+
+.logout-button:hover {
     background-color: #a96b79;
 }
 
