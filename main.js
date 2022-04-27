@@ -1,26 +1,38 @@
-window.addEventListener("popstate", function (e) {
-  var content = document.querySelector(".content");
-  var content2 = document.querySelector(".home");
-  if (window.location.href.indexOf("#Home") != -1) {
-    content.style.display = "none";
-    content2.style.display = "block";
-  } else {
-    content.style.display = "block";
-    content2.style.display = "none";
-  }
-});
+const content = document.querySelector(".content");
+const content2 = document.querySelector(".home");
+const remember = localStorage.getItem('rememberUser');
+const logOutBtn = document.querySelector(".logout-button")
 
-if (window.location.href.indexOf("#Home") != -1) {
-  var content = document.querySelector(".content");
-  var content2 = document.querySelector(".home");
-  content.style.display = "none";
-  content2.style.display = "block";
-} else {
-  var content = document.querySelector(".content");
-  var content2 = document.querySelector(".home");
+function renderLogin() {
+  window.history.pushState('page1', document.title, '/');
   content.style.display = "block";
   content2.style.display = "none";
+  logOutBtn.style.display = "none";
 }
+function renderHome() {
+  window.history.pushState('page2', document.title, '?#Home');
+  content.style.display = "none";
+  content2.style.display = "block";
+  logOutBtn.style.display = "block";
+}
+
+function checkRemember() {
+  if (remember == null) {
+    renderLogin()
+  } else renderHome()
+}
+checkRemember();
+window.addEventListener("popstate", function (e) {
+  console.log('check')
+  
+  if (window.location.href.indexOf("#Home") != -1 ) {
+    renderHome();
+  } else {
+    renderLogin();
+  }
+  
+});
+
 
 // REGISTER
 const modal_lable = document.querySelector(".modal-lable");
@@ -121,6 +133,9 @@ const check_email = (event) => {
 const regis_debouncedKeyUp_email = debounce(check_email, 500);
 email_regis.addEventListener("keyup", regis_debouncedKeyUp_email);
 
+
+
+// Click Register
 regis_confirm_btn.addEventListener("click", checkRegis);
 function checkRegis() {
   let regis_name = document.querySelector(".regis-name").value;
@@ -158,18 +173,19 @@ function checkRegis() {
     regis_email.match(mailformat)
   ) {
     // const id = `${regis_name}`;
-    console.log("thanh cong");
-    const temp = {
+    alert("Đăng kí thành công UwU");
+    const user = {
       Name: regis_name,
       Pass: regis_password,
-      Email: regis_email,
+      Email: regis_email
     };
-    localStorage.setItem(`${regis_name}`, JSON.stringify(temp));
-  } else console.log("fail");
+    localStorage.setItem(`${regis_name}`, JSON.stringify(user));
+    hideModal();
+  } 
 }
 
-const user = JSON.parse(localStorage.getItem("daorong096"));
-console.log(user);
+// const user = JSON.parse(localStorage.getItem("daorong096"));
+// console.log(user);
 
 // LOGIN
 
@@ -218,7 +234,9 @@ function GoPage(e) {
     } else {
       if (user.Pass === Userpassword.value) {
         console.log("Đăng nhập thành công");
+        localStorage.setItem('rememberUser',user.Name);
         window.history.pushState('page2', document.title, '?#Home');
+        // e.preventDefault();
       }
       else {
         alert("Mật khẩu sai");
@@ -295,3 +313,13 @@ const keyUpHandler_pass = (event) => {
 const debouncedKeyUp_pass = debounce(keyUpHandler_pass, 500);
 
 pass_log.addEventListener("keyup", debouncedKeyUp_pass);
+
+
+
+// LogOut
+function logOut() {
+  localStorage.removeItem('rememberUser');
+  window.history.pushState('page1', document.title, '/');
+  renderLogin();
+}
+logOutBtn.addEventListener('click', logOut);
