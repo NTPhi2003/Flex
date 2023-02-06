@@ -151,6 +151,7 @@ h1 {
     color: whitesmoke;
     background-color: #cb8796;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
 
@@ -209,7 +210,6 @@ h1 {
 } */
 .head-title {
     /* display: inline-block; */
-    z-index: 1;
     font-family: 'Dongle', sans-serif;
     font-size:75px;
     position: absolute;
@@ -277,7 +277,7 @@ fieldset  {
     text-align: center;
     font-size: 100px;
     color:#c0798a;
-    background-image: url(img/cat.jpg);
+    background-image: url(img/home.jpg);
     background-size: cover;
     display: none;
 }
@@ -295,6 +295,7 @@ fieldset  {
     display: none;
 }
 .modal-container {
+    border-radius: 10px;
     background-color: #ffffff;
     width: 550px;
     max-width: calc(100% - 32px);
@@ -305,6 +306,7 @@ fieldset  {
     animation: modalFadeIn ease .5s;
 }
 .modal-header {
+    border-radius: 10px 10px 0px 0px;
     height: 100px;
     background-color: #a96b79;
     display: flex;
@@ -347,6 +349,7 @@ fieldset  {
     border-style: none;   
     margin-top: 15px;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
 #register:hover {
@@ -361,6 +364,7 @@ background-color: #a96b79;
 }
 
 .modal-close {
+    border-radius: 10px;
     font-size: 15px;
     position:absolute;
     top:0;
@@ -393,4 +397,116 @@ background-color: #a96b79;
         transform: translateY(0);
 
     }
+}
+
+
+/* Toast */
+#toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 0;
+    border-radius: 2px;
+    border-left: 4px solid;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+    transition: all linear .3s;
+    /* transform: translateX(100%); */
+
+    /* animation: slideInLeft_toast ease 0.3s; */
+    /* , fadeOut linear 2s ${delay}s forwards */
+}
+
+@keyframes slideInLeft_toast {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 20px));
+    }
+    to {
+
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+.toast--success {
+    border-color: greenyellow;
+}
+
+
+.toast--success .toast__icon {
+    color: greenyellow;
+}
+
+.toast--info {
+    border-color: blue;
+}
+
+.toast--info .toast__icon {
+    color: blue;
+}
+
+.toast--warning {
+    border-color: orange;
+}
+
+.toast--warning .toast__icon {
+    color: orange;
+}
+
+.toast--error {
+    border-color: red;
+}
+
+.toast--error .toast__icon {
+    color: red;
+}
+
+.toast + .toast {
+    margin-top: 24px;
+}
+
+.toast__icon {
+    padding: 0 20px;
+    font-size: 24px;
+}
+
+.toast__body {
+    flex-grow: 1;
+}
+
+.toast__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.toast__msg {
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    margin-top: 4px;
+}
+
+.toast__close {
+    padding: 0 20px;
+    cursor: pointer;
+    color: #888;
+    transition: 0.2s ease;
+}
+
+.toast__close:hover {
+    color: #333;
 }

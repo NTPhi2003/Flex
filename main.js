@@ -235,19 +235,21 @@ login_btn.addEventListener("click", GoPage);
 function GoPage(e) {
   
   if (CheckPassword() === true) {
+
     const user = JSON.parse(localStorage.getItem(Username.value));
     if (user == null) {
       e.preventDefault();
-      alert("Tài khoản không tồn tại !");
+      showErrorToast();
     } else {
       if (user.Pass === Userpassword.value) {
+        showSuccessToast();
         console.log("Đăng nhập thành công");
         localStorage.setItem('rememberUser',user.Name);
         window.history.pushState('page2', document.title, '?#Home');
         // e.preventDefault();
       }
       else {
-        alert("Mật khẩu sai");
+        showErrorToast();
         e.preventDefault();
       }
     }
@@ -331,3 +333,74 @@ function logOut() {
   renderLogin();
 }
 logOutBtn.addEventListener('click', logOut);
+
+
+
+
+
+
+// Toast Function 
+function showSuccessToast() {
+  toast({
+      title: 'Thành công',
+      message: 'Đã đăng nhập thành công chúc bạn trải nghiệm vui vẻ ^^',
+      type: 'success',
+      duration: 2000
+  })
+}
+
+function showErrorToast() {
+  toast({
+      title: 'Thất bại',
+      message: 'Đăng nhập thất bại vui lòng kiểm tra tài khoản hoặc mật khẩu ~~',
+      type: 'error',
+      duration: 2000
+  })
+}
+
+
+function toast({title , message = '', type = 'info', duration = 3000}) {
+  const main = document.getElementById('toast');
+  if (main) {
+      const toast = document.createElement('div');
+
+      const autoRemove = setTimeout (() => {
+          main.removeChild(toast)
+      }, duration + 2000)
+
+
+      toast.onclick = function(e)  {
+          if(e.target.closest('.toast__close')) {
+              main.removeChild(toast)
+          }
+          clearTimeout(autoRemove)
+      }
+
+      const icons = {
+          success: 'fa-solid fa-circle-check',
+          info: 'fa-solid fa-circle-info',
+          warning: 'fa-solid fa-circle-exclamation',
+          error: 'fa-sharp fa-solid fa-circle-xmark'
+      }
+
+      const icon = icons[type]
+      const delay = (duration/1000).toFixed(2);
+
+      toast.classList.add('toast', `toast--${type}`)
+      toast.style.animation = `slideInLeft_toast ease 0.3s, fadeOut linear 2s ${delay}s forwards`
+      toast.innerHTML = `
+          <div class="toast__icon">
+              <i class="${icon}"></i>
+          </div>
+          <div class="toast__body">
+              <h3 class="toast__title">${title}</h3>
+              <p class="toast__msg">${message}</p>
+          </div>
+          <div class="toast__close">
+              <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+          </div>
+      `
+      main.appendChild(toast)
+
+  }
+}
